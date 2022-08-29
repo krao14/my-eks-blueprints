@@ -11,13 +11,10 @@ export default class PipelineConstruct extends Construct {
 
     const account = props?.env?.account!;
     const region = props?.env?.region!;
-    
-    const mngClusterProviderInference = new blueprints.MngClusterProvider(props);
 
     const blueprint = blueprints.EksBlueprint.builder()
     .account(account)
     .region(region)
-    .clusterProvider(mngClusterProviderInference)
     .addOns(new blueprints.ClusterAutoScalerAddOn);// .teams(new TeamPlatform(account), new TeamApplication('burnham',account));
   
     const repoUrl = 'https://github.com/aws-samples/eks-blueprints-workloads.git';
