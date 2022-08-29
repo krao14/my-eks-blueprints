@@ -2,7 +2,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as blueprints from '@aws-quickstart/eks-blueprints';
-import { KubernetesVersion } from 'aws-cdk-lib/aws-eks/lib';
 
 // import { TeamPlatform, TeamApplication } from '../teams';
 
@@ -68,4 +67,6 @@ export default class PipelineConstruct extends Construct {
       })
       .build(scope, id+'-stack', props);
   }
+  primaryOutputDirectory: 'my-eks-blueprints/cdk.out'
 }
+
