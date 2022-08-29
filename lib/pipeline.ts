@@ -2,8 +2,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as blueprints from '@aws-quickstart/eks-blueprints';
-import eks = require('aws-cdk-lib/aws-eks');
-import ClusterConstruct from '../lib/my-eks-blueprints-stack';
 
 // import { TeamPlatform, TeamApplication } from '../teams';
 
@@ -20,24 +18,6 @@ export default class PipelineConstruct extends Construct {
     .addOns(new blueprints.ClusterAutoScalerAddOn);// .teams(new TeamPlatform(account), new TeamApplication('burnham',account));
   
     const repoUrl = 'https://github.com/aws-samples/eks-blueprints-workloads.git';
-    
-<<<<<<< HEAD
-    const inferenceCluster = new eks.FargateCluster(this, 'Inference', {
-      version: eks.KubernetesVersion.V1_21,
-    });
-
-    const trainingCluster = new eks.FargateCluster(this, 'Training', {
-      version: eks.KubernetesVersion.V1_21,
-    });
-=======
-    // const inferenceCluster = new eks.FargateCluster(this, 'Inference', {
-    //   version: eks.KubernetesVersion.V1_21,
-    // });
-
-    // const trainingCluster =new eks.FargateCluster(this, 'Training', {
-    //   version: eks.KubernetesVersion.V1_21,
-    // });
->>>>>>> 5f36a60 (restoring)
 
     const bootstrapRepo : blueprints.ApplicationRepository = {
         repoUrl,
