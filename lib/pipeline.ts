@@ -21,6 +21,7 @@ export default class PipelineConstruct extends Construct {
   
     const repoUrl = 'https://github.com/aws-samples/eks-blueprints-workloads.git';
     
+<<<<<<< HEAD
     const inferenceCluster = new eks.FargateCluster(this, 'Inference', {
       version: eks.KubernetesVersion.V1_21,
     });
@@ -28,6 +29,15 @@ export default class PipelineConstruct extends Construct {
     const trainingCluster = new eks.FargateCluster(this, 'Training', {
       version: eks.KubernetesVersion.V1_21,
     });
+=======
+    // const inferenceCluster = new eks.FargateCluster(this, 'Inference', {
+    //   version: eks.KubernetesVersion.V1_21,
+    // });
+
+    // const trainingCluster =new eks.FargateCluster(this, 'Training', {
+    //   version: eks.KubernetesVersion.V1_21,
+    // });
+>>>>>>> 5f36a60 (restoring)
 
     const bootstrapRepo : blueprints.ApplicationRepository = {
         repoUrl,
