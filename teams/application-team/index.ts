@@ -10,3 +10,4 @@ export class TeamApplication extends ApplicationTeam {
         });
     }
 }
+
