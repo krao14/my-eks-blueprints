@@ -2,6 +2,8 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as blueprints from '@aws-quickstart/eks-blueprints';
+import { KubecostAddOn } from '@kubecost/kubecost-eks-blueprints-addon';
+import { DatadogAddOn } from '@datadog/datadog-eks-blueprints-addon';
 
 import { TeamPlatform, TeamApplication } from '../teams';
 
@@ -11,11 +13,13 @@ export default class PipelineConstruct extends Construct {
 
     const account = props?.env?.account!;
     const region = props?.env?.region!;
+    const kubecost = new KubecostAddOn()
+    const datadog = new DatadogAddOn({apiKeyExistingSecret: 'datadog'}) 
 
     const blueprint = blueprints.EksBlueprint.builder()
     .account(account)
     .region(region)
-    .addOns(new blueprints.ClusterAutoScalerAddOn)
+    .addOns(new blueprints.ClusterAutoScalerAddOn, kubecost, datadog, new blueprints.KubeviousAddOn, new blueprints.CalicoOperatorAddOn)
     .teams(new TeamPlatform(account), new TeamApplication('burnham',account));
   
     const repoUrl = 'https://github.com/aws-samples/eks-blueprints-workloads.git';
