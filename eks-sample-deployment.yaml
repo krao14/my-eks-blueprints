@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: 270723717512.dkr.ecr.us-west-2.amazonaws.com/eksblueprintsprivate:latest2
+        image: 270723717512.dkr.ecr.us-west-2.amazonaws.com/eksblueprintsprivate:latest
         ports:
         - containerPort: 80

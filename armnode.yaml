@@ -1,0 +1,12 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: arm-cluster
+  region: us-west-2
+managedNodeGroups:
+  - name: armnode
+    ami: ami-020f8ed8b6809c3aa
+    overrideBootstrapCommand: |
+      #!/bin/bash
+      /etc/eks/bootstrap.sh arm-cluster --container-runtime containerd
+
