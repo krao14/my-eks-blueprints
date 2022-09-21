@@ -12,17 +12,26 @@ spec:
   selector:	
     app: nginx
 
-
-apiVersion: v1	
-kind: Service	
-metadata:	
-  name: nginx
-  labels:
-    run: heart-disease-flask-app
-spec:	
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: '60'
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  name: udp-test1
+spec:
+  type: LoadBalancer
   ports:
-  - protocol: TCP
-    port: 80	
-    targetPort: 80
-  selector:	
-    app: nginx
+  - port: 5005
+    protocol: UDP
+    targetPort: 5005
+  selector:
+    name: heart-disease-flask-app
+
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: ingress-class
+spec:
+  controller: ingress.k8s.aws/alb
+

@@ -13,6 +13,9 @@ data:
   # cwagent json config
   cwagentconfig.json: |
     {
+      "agent:" {
+          "region": "us-west-2"
+      },
       "logs": {
         "metrics_collected": {
           "prometheus": {
