@@ -1,0 +1,34 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  namespace: default
+  name: allow-burnham-to-kubevious-ui
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: nginx
+          namespaceSelector:
+            matchLabels:
+              name: team-burnham
+      ports:
+        - protocol: TCP
+          port: 80
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: nginx
+          namespaceSelector:
+            matchLabels:
+              name: team-burnham
+      ports:
+        - protocol: TCP
+          port: 80
